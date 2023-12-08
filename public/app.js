@@ -186,10 +186,10 @@ function handleConfigChange() {
  * Initializes the app.
  */
 var initApp = function() {
-  document.getElementById('sign-in-with-redirect').addEventListener(
-      'click', signInWithRedirect);
-  document.getElementById('sign-in-with-popup').addEventListener(
-      'click', signInWithPopup);
+  // document.getElementById('sign-in-with-redirect').addEventListener(
+  //     'click', signInWithRedirect);
+  // document.getElementById('sign-in-with-popup').addEventListener(
+  //     'click', signInWithPopup);
   document.getElementById('sign-out').addEventListener('click', function() {
     firebase.auth().signOut();
   });
@@ -197,32 +197,7 @@ var initApp = function() {
       'click', function() {
         deleteAccount();
       });
-
-  document.getElementById('recaptcha-normal').addEventListener(
-      'change', handleConfigChange);
-  document.getElementById('recaptcha-invisible').addEventListener(
-      'change', handleConfigChange);
-  // Check the selected reCAPTCHA mode.
-  document.querySelector(
-      'input[name="recaptcha"][value="' + getRecaptchaMode() + '"]')
-      .checked = true;
-
-  document.getElementById('email-signInMethod-password').addEventListener(
-      'change', handleConfigChange);
-  document.getElementById('email-signInMethod-emailLink').addEventListener(
-      'change', handleConfigChange);
-  // Check the selected email signInMethod mode.
-  document.querySelector(
-      'input[name="emailSignInMethod"][value="' + getEmailSignInMethod() + '"]')
-      .checked = true;
-  document.getElementById('email-disableSignUp-status').addEventListener(
-      'change', handleConfigChange);
-  document.getElementById("email-disableSignUp-status").checked =
-      getDisableSignUpStatus();  
-  document.getElementById('admin-restricted-operation-status').addEventListener(
-      'change', handleConfigChange);
-  document.getElementById("admin-restricted-operation-status").checked =
-      getAdminRestrictedOperationStatus();  
 };
+
 
 window.addEventListener('load', initApp);
