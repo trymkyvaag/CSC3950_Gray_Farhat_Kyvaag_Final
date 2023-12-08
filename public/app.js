@@ -12,6 +12,7 @@
  * limitations under the License.
  */
 
+
 /**
  * FirebaseUI initialization to be used in a Single Page application context.
  */
