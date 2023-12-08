@@ -1,10 +1,6 @@
-function testBookApi() {
-    var client_id = "AIzaSyDC9zpVAnoBNi0T__-qUv6PbdA_sgrnbGY";
-
-    var bookTitle = "cars";
-    var author = "";
-
-    var url = `https://www.googleapis.com/books/v1/volumes?q=${bookTitle}+inauthor:${author}&key=${client_id}`;
+var client_id = "AIzaSyDC9zpVAnoBNi0T__-qUv6PbdA_sgrnbGY";
+function testBookApi(title, author) {
+    var url = `https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}&key=${client_id}`;
 
 
     let test = fetch(url);
@@ -14,4 +10,5 @@ function testBookApi() {
         })
 }
 
-testBookApi();
+//Search for a book with a title that includes "programming", and don't include a author
+testBookApi("Programming", "");
