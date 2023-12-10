@@ -1,11 +1,11 @@
-var client_id = "AIzaSyDC9zpVAnoBNi0T__-qUv6PbdA_sgrnbGY"; 
+var user_key = "AIzaSyDC9zpVAnoBNi0T__-qUv6PbdA_sgrnbGY"; //TODO: Need to change this and set dynamically
 
 function getUserIDFromBookshelf() {
     // Make an authenticated request to get a Bookshelf resource
     return fetchBookshelfResource()
         .then(res => res.json())
         .then(data => {
-            
+
             // Check if the selfLink property exists in the Bookshelf resource
             if (data && data.selfLink) {
                 var userId = extractUserIDFromSelfLink(data.selfLink);
@@ -29,7 +29,7 @@ function extractUserIDFromSelfLink(selfLink) {
 function fetchBookshelfResource() {
 
     var url = 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/0';
-    url += `&key=${client_id}`;
+    url += `&key=${user_key}`;
     console.log('URL:' + url)
     return fetch(url);
 }
