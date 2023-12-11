@@ -1,4 +1,5 @@
 var client_id = "AIzaSyDC9zpVAnoBNi0T__-qUv6PbdA_sgrnbGY";
+var daniel_uid = "113703336771319867948";
 function testBookApi(title, author) {
     var url = `https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}&key=${client_id}`;
 
@@ -10,5 +11,19 @@ function testBookApi(title, author) {
         })
 }
 
-//Search for a book with a title that includes "programming", and don't include a author
-testBookApi("Programming", "");
+function getBookshelves(user_id) {
+    var url = `https://www.googleapis.com/books/v1/users/${user_id}/bookshelves`;
+
+
+    let test = fetch(url);
+    test.then(res =>
+        res.json()).then(d => {
+            console.log(d)
+        })
+}
+
+getBookshelves(daniel_uid);
+
+
+
+
