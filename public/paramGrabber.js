@@ -94,18 +94,10 @@ async function fetchBookshelfResourceFromURL(url) {
     }
 }
 
-// function createGoogleBooksLink(clientId, clientSecret) {
-//     const encodedClientId = encodeURIComponent(clientId);
-//     const encodedClientSecret = encodeURIComponent(clientSecret);
-
-//     const link = `https://books.google.com/books?uid=${encodedClientId}&source=gbs_lp_bookshelf_list`;
-
-//     return link;
-// }
 
 
 
-const url = 'https://example.com/books?uid=102648910697821551523';
+const url = 'https://books.google.com?uid=102648910697821551523';
 fetchBookshelfResourceFromURL(url)
     .then(result => {
         if (result.success) {
