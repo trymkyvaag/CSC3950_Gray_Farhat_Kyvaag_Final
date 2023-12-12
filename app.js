@@ -1,8 +1,10 @@
 const express = require('express');
 const path = require('path');
-const app = express();
+var morgan = require('morgan');
 
 const port = 3000;
+const app = express();
+app.use(morgan('tiny')) 
 
 app.use(express.static('public'))
 app.use(express.static('public/pages'))
@@ -10,6 +12,9 @@ app.use(express.static('public/javascript'))
 app.use(express.static('public/css'))
 
 app.get('/', (req, res) => {
+
+  console.log(req);
+
   res.sendFile("/pages/index.html");
 });
 
