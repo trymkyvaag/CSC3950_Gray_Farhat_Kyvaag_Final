@@ -1,0 +1,12 @@
+{
+    "rules": {
+        ".read": "auth != null",
+        ".write": "auth != null",
+        "$other": {
+            ".validate": false
+        },
+        ".indexOn": [
+            "uid"
+        ]
+    }
+}
