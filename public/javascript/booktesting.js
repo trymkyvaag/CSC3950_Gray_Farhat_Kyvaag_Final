@@ -22,8 +22,25 @@ function getBookshelves(user_id) {
         })
 }
 
-getBookshelves(daniel_uid);
+// getBookshelves(daniel_uid);
 
+function test() {
 
+    var url = `https://www.googleapis.com/books/v1/mylibrary/bookshelves/0`;
 
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+        }
+    };
+    xhttp.open("GET", url, true);
 
+    var token = "Bearer " + sessionStorage.getItem("oauth_token");
+    console.log(token);
+        
+    xhttp.setRequestHeader("Authorization", token);
+    xhttp.send();
+}
+
+test();
