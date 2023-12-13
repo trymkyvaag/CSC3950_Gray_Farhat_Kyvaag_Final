@@ -32,9 +32,10 @@ function clearBooksFromShelf(shelf_idx) {
     send_authorized(url, "POST");
 }
 
-function addBookToShelf(book_id, shelf_index) {
+async function addBookToShelf(book_id, shelf_index) {
     url = `https://www.googleapis.com/books/v1/mylibrary/bookshelves/${shelf_index}/addVolume?volumeId=${book_id}&country=US`
-    send_authorized(url, "POST");
+    var result = await send_authorized(url, "POST");
+    return result;
 }
 
 function removeBookFromShelf(book_id, shelf_index) {
@@ -45,8 +46,9 @@ function removeBookFromShelf(book_id, shelf_index) {
 function send_authorized(url, method) {
     var res;
     var token = "Bearer " + sessionStorage.getItem("oauth_token");
+    var httpmethod = method;
     return fetch(url, {
-        method: 'GET',
+        method: httpmethod,
         headers: {
             'Authorization': token,
         },
@@ -82,9 +84,9 @@ function send_unauthorized(url, method) {
 // })
 
 /**
- * An example of searching for a book
+ * An example of adding a book to the favorites shelf 
  */
-// var x = testBookApi("Harry Potter", "").then(result => {
+// var x = addBookToShelf("Sm5AKLXKxHgC", 0).then(result => {
 //     console.log(result); //prints out the json response
 // }).catch(error => {
 
