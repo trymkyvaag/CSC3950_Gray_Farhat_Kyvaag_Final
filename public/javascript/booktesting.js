@@ -7,11 +7,11 @@ function testBookApi(title, author) {
     send_unauthorized(url);
 }
 
-function getBookshelf(shelf_index) {
+async function getBookshelf(shelf_index) {
 
     url = `https://www.googleapis.com/books/v1/mylibrary/bookshelves/${shelf_index}`;
-    send_authorized(url, "GET");
-
+    var result = await send_authorized(url, "GET");
+    return result;
 }
 
 async function getAllBookshelves() {
@@ -20,9 +20,10 @@ async function getAllBookshelves() {
     return result;
 }
 
-function getBooksFromShelf(shelf_idx) {
+async function getBooksFromShelf(shelf_idx) {
     url = `https://www.googleapis.com/books/v1/mylibrary/bookshelves/${shelf_idx}/volumes`;
-    send_authorized(url, "GET");
+    var result = await send_authorized(url, "GET");
+    return result;
 }
 
 function clearBooksFromShelf(shelf_idx) {
@@ -40,10 +41,6 @@ function removeBookFromShelf(book_id, shelf_index) {
     send_authorized(url, "POST");
 }
 
-// removeBookFromShelf("NRWlitmahXkC");
-// addBookToShelf("NRWlitmahXkC");
-
-
 function send_authorized(url, method) {
     var res;
     var token = "Bearer " + sessionStorage.getItem("oauth_token");
@@ -60,12 +57,6 @@ function send_authorized(url, method) {
     });
 }
 
-var x = getAllBookshelves().then(result => {
-    console.log(result);
-}).catch(error => {
-
-})
-
 function send_unauthorized(url) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -80,3 +71,12 @@ function send_unauthorized(url) {
     xhttp.setRequestHeader("Authorization", token);
     xhttp.send();
 }
+
+/**
+ * An example of getting all of a user's bookshelves and then printing it to console
+ */
+var x = getAllBookshelves.then(result => {
+    console.log(result);
+}).catch(error => {
+
+})
