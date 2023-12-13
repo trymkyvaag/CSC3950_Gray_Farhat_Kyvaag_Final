@@ -1,9 +1,9 @@
 :root{
-    --main-background-color: hsla(246, 100%, 56%, 0.88);
+    --main-background-color: hsl(240, 100%, 0%);
     --secondary-background-color: hsl(0, 0%, 100%);
-    --grain: url("./noise-light.png");
+    --grain: url("assets/noise-light.png");
     --primary-text-color: white;
-    --link-hover-color: black;
+    --link-hover-color: rgba(53, 31, 255, 0.88);
     --main-card-color: rgb(238, 238, 238);
     --fold-color: rgb(255, 209, 55);
     --primary-button-color: rgb(0, 0, 0);
