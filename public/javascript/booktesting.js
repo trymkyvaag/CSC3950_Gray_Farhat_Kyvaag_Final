@@ -33,7 +33,14 @@ function addBookToShelf(book_id){
     url = `https://www.googleapis.com/books/v1/mylibrary/bookshelves/0/addVolume?volumeId=${book_id}&country=US`
     send_authorized(url, "POST");
 }
-addBookToShelf("NRWlitmahXkC");
+
+function removeBookFromShelf(book_id){
+    url = `https://www.googleapis.com/books/v1/mylibrary/bookshelves/0/removeVolume?volumeId=${book_id}&country=US`
+    send_authorized(url, "POST");
+}
+
+removeBookFromShelf("NRWlitmahXkC");
+
 
 
 function send_authorized(url, method){
