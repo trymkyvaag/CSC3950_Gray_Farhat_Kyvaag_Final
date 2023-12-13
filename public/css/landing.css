@@ -1,0 +1,10 @@
+#hero-text{
+    margin-block: 8rem;
+    text-align: center;
+    font-size: 5rem;
+    color: var(--primary-text-color);
+}
+
+#sign-in-title{
+    margin-bottom: 2rem;
+}

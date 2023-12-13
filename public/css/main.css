@@ -1,0 +1,235 @@
+:root{
+    --main-background-color: hsla(246, 100%, 56%, 0.88);
+    --secondary-background-color: hsl(0, 0%, 100%);
+    --grain: url("./noise-light.png");
+    --primary-text-color: white;
+    --link-hover-color: black;
+    --main-card-color: rgb(238, 238, 238);
+    --fold-color: rgb(255, 209, 55);
+    --primary-button-color: rgb(0, 0, 0);
+    --primary-button-hover: rgb(30, 30, 30);
+    --secondary-button-color: #ff5050;
+    --main-border-radius: 1rem;
+    --main-transition: all ease-in-out 0.2s;
+    --mask-fade: linear-gradient(180deg, transparent 5%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 90%, transparent 95%)
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+body{
+    height: 100dvh;
+    background-color: var(--main-background-color);
+    background-image: var(--grain);
+}
+
+.container-xxl{
+    height: 90%;
+}
+
+.footer-text{
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    margin-top: 15dvh;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,0.5942752100840336) 0%, rgba(255,255,255,0) 100%);
+}
+
+#back-to-top{
+    color: var(--primary-button-color);
+    text-decoration: none;
+    transition: var(--main-transition);
+}
+
+#back-to-top:hover{
+    color: var(--secondary-button-color);
+}
+
+#main-body-container{
+    margin-top: 1rem;
+}
+
+.navbar-brand{
+    font-size: 2rem;
+    color: white;
+    transition: var(--main-transition);
+}
+
+.nav-link{
+    color: white;
+}
+
+.nav-link:hover{
+    color: var(--link-hover-color);
+}
+
+.button-primary{
+    width: 100%;
+    border-radius: var(--main-border-radius);
+    padding: 1em;
+    border: transparent;
+    color: var(--primary-text-color);
+    background-color: var(--primary-button-color);
+    background-image: var(--grain);
+    transition: var(--main-transition);
+}
+
+.button-primary:hover{
+    box-shadow: var(--primary-button-color) 0 0 15px 2px;
+}
+
+.round-button{
+    width: auto;
+    aspect-ratio: 1/1;
+    padding-inline: 1rem;
+    padding-block: 0.3rem;
+    border-radius: 50%;
+}
+
+#quick-search-button{
+    background-color: var(--secondary-button-color);
+    z-index: 100;
+    position: fixed;
+    top: 90%;
+    right: 5%;
+    transition: var(--main-transition);
+}
+
+#quick-search-button:hover{
+    box-shadow: var(--secondary-button-color) 0 0 15px 2px;
+}
+
+#quick-search-button:hover{
+    animation: wiggleAnim 0.5s;
+}
+
+.primary-text-field{
+    width: 100%;
+    background-color: rgba(231, 231, 231, 0.94);
+    background-image: var(--grain);
+    border: transparent;
+    border-radius: var(--main-border-radius);
+    padding: 1em;
+    resize: none;
+    overflow: hidden;
+}
+
+.card{
+    border: transparent;
+    border-radius: var(--main-border-radius);
+    background: var(--main-card-color);
+    padding: 2rem;
+    margin-block: 1rem;
+}
+
+#modal-search-results-wrapper{
+    margin-block: 1em;
+    padding: 1em;
+    max-height: 20em;
+    overflow: auto;
+    -webkit-mask: var(--mask-fade);
+    mask: var(--mask-fade);
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 1rem;
+    background-color: rgba(0,0,0,0.4);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content{
+    border-radius: var(--main-border-radius);
+}
+
+.modal-header{
+    border: transparent;
+}
+
+.modal-card-cover{
+    box-shadow: black 0 0 5px 0;
+    border-radius: 0.3rem;
+    width: 100%;
+}
+
+.list-card-add-remove-button{
+    border: transparent;
+    background: transparent;
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    transition: var(--main-transition);
+}
+
+.collections-remove-button{
+    bottom: 0.2em;
+}
+
+.add-to-remove{
+    rotate: 45deg;
+    transition: var(--main-transition);
+}
+
+.list-card-add-remove-button:hover{
+    scale: 80%;
+}
+
+
+
+/*noinspection CssReplaceWithShorthandSafely*/
+.corner-fold {
+    position: relative;
+    background: linear-gradient(-135deg, transparent 2.13em, var(--main-card-color) 0);
+    background-size: 100% 150%;
+    background-position: 100% 0%;
+    border-radius: var(--main-border-radius);
+    animation: foldCornerAnim 0.5s;
+}
+
+.corner-fold::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(to left bottom, transparent 50%, var(--fold-color) 0, var(--main-card-color)) no-repeat 100% 0;
+    width: 3em;
+    height: 3em;
+    border-bottom-left-radius: inherit;
+    box-shadow: -.2em .2em .3em -.1em rgba(0, 0, 0, 0.25);
+    animation: foldCornerBeforeAnim 0.5s;
+}
+
+/*Animations*/
+@keyframes wiggleAnim {
+    0% {rotate: 0deg}
+    25% {rotate: 8deg}
+    50% {rotate: -6deg}
+    75% {rotate: 4deg}
+    100% {rotate: -2deg}
+}
+
+@keyframes foldCornerAnim {
+    0% {background-position: 100% 40%}
+    100% {background-position: 100% 0}
+}
+
+@keyframes foldCornerBeforeAnim {
+    0% {width: 0; height: 0}
+    100% {width: 3em; height: 3em}
+}
+
+/*Media Querys*/
+
+@media screen and (max-width: 991px){
+    .offcanvas-header, .offcanvas-body{
+        background-color: var(--main-background-color);
+        background-image: var(--grain);
+    }
+}
