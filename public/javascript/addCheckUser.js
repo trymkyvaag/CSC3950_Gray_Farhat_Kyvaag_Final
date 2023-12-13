@@ -58,8 +58,3 @@ async function checkAndAddUser(user) {
 
 // checkAndAddUser(newUser);
 
-
-async function get(query) {
-    const snapshot = await query;
-    return snapshot.val();
-}
