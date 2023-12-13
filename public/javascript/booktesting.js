@@ -27,9 +27,10 @@ async function getBooksFromShelf(shelf_idx) {
     return result;
 }
 
-function clearBooksFromShelf(shelf_idx) {
-    url = `https://www.googleapis.com/books/v1/mylibrary/bookshelves/9/clearVolumes?key=${key}`;
-    send_authorized(url, "POST");
+async function clearBooksFromShelf(shelf_idx) {
+    url = `https://www.googleapis.com/books/v1/mylibrary/bookshelves/${shelf_idx}/clearVolumes?key=${key}`;
+    var result = await send_authorized(url, "POST");
+    return result;
 }
 
 async function addBookToShelf(book_id, shelf_index) {
