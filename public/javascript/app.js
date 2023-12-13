@@ -105,28 +105,32 @@ var signInWithPopup = function () {
  * Displays the UI for a signed in user.
  * @param {!firebase.User} user
  */
-var handleSignedInUser = function (user) {
-  document.getElementById('user-signed-in').style.display = 'block';
-  document.getElementById('user-signed-out').style.display = 'none';
-  document.getElementById('name').textContent = user.displayName;
-  document.getElementById('email').textContent = user.email;
-  document.getElementById('phone').textContent = user.phoneNumber;
+// var handleSignedInUser = function (user) {
+//   document.getElementById('user-signed-in').style.display = 'block';
+//   document.getElementById('user-signed-out').style.display = 'none';
+//   document.getElementById('name').textContent = user.displayName;
+//   document.getElementById('email').textContent = user.email;
+//   document.getElementById('phone').textContent = user.phoneNumber;
 
-  if (user.photoURL) {
-    var photoURL = user.photoURL;
-    // Append size to the photo URL for Google hosted images to avoid requesting
-    // the image with its original resolution (using more bandwidth than needed)
-    // when it is going to be presented in smaller size.
-    if ((photoURL.indexOf('googleusercontent.com') != -1) ||
-      (photoURL.indexOf('ggpht.com') != -1)) {
-      photoURL = photoURL + '?sz=' +
-        document.getElementById('photo').clientHeight;
-    }
-    document.getElementById('photo').src = photoURL;
-    document.getElementById('photo').style.display = 'block';
-  } else {
-    document.getElementById('photo').style.display = 'none';
-  }
+//   if (user.photoURL) {
+//     var photoURL = user.photoURL;
+//     // Append size to the photo URL for Google hosted images to avoid requesting
+//     // the image with its original resolution (using more bandwidth than needed)
+//     // when it is going to be presented in smaller size.
+//     if ((photoURL.indexOf('googleusercontent.com') != -1) ||
+//       (photoURL.indexOf('ggpht.com') != -1)) {
+//       photoURL = photoURL + '?sz=' +
+//         document.getElementById('photo').clientHeight;
+//     }
+//     document.getElementById('photo').src = photoURL;
+//     document.getElementById('photo').style.display = 'block';
+//   } else {
+//     document.getElementById('photo').style.display = 'none';
+//   }
+// };
+
+var handleSignedInUser = function (user) {
+  window.location.href = "/widget/";
 };
 
 
@@ -195,8 +199,8 @@ function handleConfigChange() {
  * Initializes the app.
  */
 var initApp = function () {
-  // document.getElementById('sign-in-with-redirect').addEventListener(
-  //     'click', signInWithRedirect);
+  document.getElementById('sign-in-with-redirect').addEventListener(
+      'click', signInWithRedirect);
   // document.getElementById('sign-in-with-popup').addEventListener(
   //     'click', signInWithPopup);
   document.getElementById('sign-out').addEventListener('click', function () {

@@ -13,8 +13,18 @@ app.use(express.static('public/javascript'))
 app.use(express.static('public/css'))
 
 app.get('/', (req, res) => {
-  res.sendFile("/pages/index.html");
+  res.sendFile(path.join(__dirname, '/public/pages/signin.html'));
 });
+
+app.get('/widget', (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/pages/widget.html'));
+});
+
+app.get('/profile', (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/pages/signin.html'));
+});
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
