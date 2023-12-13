@@ -50,7 +50,37 @@ async function checkAndAddUser(user) {
     }
 }
 
-// Example usage
+async function getAllEmails() {
+    try {
+        const snapshot = await db.get(rootRef);
+
+        if (snapshot.exists()) {
+            const users = snapshot.val();
+            const emails = [];
+
+            // Iterate through the users and collect emails
+            Object.values(users).forEach(user => {
+                if (user.email) {
+                    emails.push(user.email);
+                }
+            });
+
+            console.log('All emails in the database:', emails);
+            return emails;
+        } else {
+            console.log('No data in the database');
+            return [];
+        }
+    } catch (error) {
+        console.error('Error getting emails from the database:', error.message);
+        return [];
+    }
+}
+
+
+// getAllEmails();
+
+
 // const newUser = {
 //     email: "tom@example.com",
 //     uid: "1223"
