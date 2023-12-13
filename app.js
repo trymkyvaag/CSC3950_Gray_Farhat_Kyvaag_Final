@@ -1,10 +1,11 @@
 const express = require('express');
 const path = require('path');
 var morgan = require('morgan');
+const addCheck = require('./public/javascript/addCheckUser.js');
 
 const port = 3000;
 const app = express();
-app.use(morgan('tiny')) 
+app.use(morgan('tiny'))
 
 app.use(express.static('public'))
 app.use(express.static('public/pages'))
@@ -18,3 +19,6 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 });
+
+
+console.log("In app.js");
