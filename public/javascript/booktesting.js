@@ -39,13 +39,13 @@ async function addBookToShelf(book_id, shelf_index) {
     return result;
 }
 
-function removeBookFromShelf(book_id, shelf_index) {
+async function removeBookFromShelf(book_id, shelf_index) {
     url = `https://www.googleapis.com/books/v1/mylibrary/bookshelves/${shelf_index}/removeVolume?volumeId=${book_id}&country=US`
-    send_authorized(url, "POST");
+    var result = await send_authorized(url, "POST");
+    return result;
 }
 
 function send_authorized(url, method) {
-    var res;
     var token = "Bearer " + sessionStorage.getItem("oauth_token");
     var httpmethod = method;
     return fetch(url, {
@@ -56,21 +56,21 @@ function send_authorized(url, method) {
     }).then(function (response) {
         return response.json();
     }).then(function (data) {
-        var userid = JSON.stringify(data);
-        return userid;
+        var result = JSON.stringify(data);
+        return result;
     });
 }
 
 function send_unauthorized(url, method) {
-    var res;
+    var httpmethod = method;
     return fetch(url, {
-        method: 'GET',
+        method: httpmethod,
         headers: {},
     }).then(function (response) {
         return response.json();
     }).then(function (data) {
-        var userid = JSON.stringify(data);
-        return userid;
+        var result = JSON.stringify(data);
+        return result;
     });
 }
 
