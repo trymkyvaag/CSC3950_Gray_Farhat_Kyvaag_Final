@@ -10,7 +10,7 @@ app.use(morgan('tiny'))
 app.use(express.static('public'))
 app.use(express.static('public/pages'))
 app.use(express.static('public/javascript'))
-app.use(express.static('public/css'))
+app.use(express.static('public/styles'))
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/pages/signin.html'));
