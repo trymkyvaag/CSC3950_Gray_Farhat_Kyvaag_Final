@@ -16,8 +16,8 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/pages/signin.html'));
 });
 
-app.get('/widget', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/pages/widget.html'));
+app.get('/home', (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/pages/home.html'));
 });
 
 app.get('/profile', (req, res) => {
