@@ -49,8 +49,8 @@ function send_unauthorized(url){
     xhttp.send();
 }
 
-function getBooksFromShelf(){
-    url = `https://www.googleapis.com/books/v1/mylibrary/bookshelves/1/volumes`;
+function getBooksFromShelf(shelf_idx){
+    url = `https://www.googleapis.com/books/v1/mylibrary/bookshelves/${shelf_idx}/volumes`;
     send_authorized(url);
 }
 
