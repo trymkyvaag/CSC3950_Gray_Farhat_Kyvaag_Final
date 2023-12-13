@@ -29,7 +29,7 @@ function clearBooksFromShelf(shelf_idx){
     send_authorized(url, "POST");
 }
 
-function addBookToShelf(book_id){
+function addBookToShelf(book_id, shelf_index){
     url = `https://www.googleapis.com/books/v1/mylibrary/bookshelves/${shelf_index}/addVolume?volumeId=${book_id}&country=US`
     send_authorized(url, "POST");
 }
@@ -40,7 +40,7 @@ function removeBookFromShelf(book_id, shelf_index){
 }
 
 // removeBookFromShelf("NRWlitmahXkC");
-addBookToShelf("NRWlitmahXkC");
+// addBookToShelf("NRWlitmahXkC");
 
 
 function send_authorized(url, method){
