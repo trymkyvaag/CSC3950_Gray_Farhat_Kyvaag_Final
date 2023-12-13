@@ -12,9 +12,6 @@ app.use(express.static('public/javascript'))
 app.use(express.static('public/css'))
 
 app.get('/', (req, res) => {
-
-  console.log(req);
-
   res.sendFile("/pages/index.html");
 });
 

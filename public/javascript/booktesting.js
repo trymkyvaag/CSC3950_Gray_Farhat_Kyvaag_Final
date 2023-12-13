@@ -11,22 +11,11 @@ function testBookApi(title, author) {
         })
 }
 
-function getBookshelves(user_id) {
-    var url = `https://www.googleapis.com/books/v1/users/${user_id}/bookshelves`;
-
-
-    let test = fetch(url);
-    test.then(res =>
-        res.json()).then(d => {
-            console.log(d)
-        })
-}
-
 // getBookshelves(daniel_uid);
 
-function test() {
+function getBookshelf(shelf_index) {
 
-    var url = `https://www.googleapis.com/books/v1/mylibrary/bookshelves/0`;
+    var url = `https://www.googleapis.com/books/v1/mylibrary/bookshelves/${shelf_index}`;
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -43,4 +32,8 @@ function test() {
     xhttp.send();
 }
 
-test();
+console.log("DBG> Public bookshelf (0): ");
+getBookshelf(0);
+
+console.log("DBG> Private bookshelf (1): ");
+getBookshelf(1);
