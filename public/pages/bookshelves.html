@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadRover | Collections</title>
+
+    <!--    Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <!--    Stylesheets-->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/home.css">
+    <!--    Scripts-->
+    <script src="js/collections.js" defer></script>
+
+    <!--    Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="navbar sticky-top navbar-expand-lg body-navbar">
+        <nav class="container-xxl body-gutter flex-wrap flex-lg-nowrap">
+            <div class="d-lg-none body-navbar-toggle">
+                <!--                Previously used to be toggle button wrapper. Left outer div for spacing purposes-->
+            </div>
+            <a class="navbar-brand p-0 me-0 me-lg-2 d-flex" href="">FoldedCorner</a>
+            <div class="body-navbar-toggle">
+                <button class="navbar-toggler p-2" id="menu-toggle-button" type="button" data-bs-toggle="offcanvas"
+                    href="#offcanvas-nav">
+                    ...
+                </button>
+            </div>
+
+            <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="offcanvas-nav"
+                aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header border-bottom">
+                    <a href="" class="navbar-brand offcanvas-title">
+                        Menu
+                    </a>
+                    <button class="btn-close" type="button" data-bs-dismiss="offcanvas" href="#offcanvas-nav"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="/collections">Collection</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-xxl">
+        <div class="row">
+            <div id="quick-search-wrapper">
+                <button type="button" class="round-button button-primary" id="quick-search-button"
+                    data-bs-toggle="modal" data-bs-target="#searchModal">
+                    <img src="styles/icons/searchWhiteSmall.png" alt="Search Icon">
+                </button>
+            </div>
+
+            <main class="body-main order-1 col" id="bodyMain">
+                <div class="container" id="main-body-container">
+                    <!--                    Main Page Content-->
+                    <div id="main-page-content">
+
+                        <div id="collections-preview-wrapper">
+                            <h3 class="home-heading">Your Collection</h3>
+                            <div class="row row-cols-2 row-cols-lg-5 row-cols-sm-3 g-2" id="collections-preview-grid">
+                                <div class="col">
+                                    <a class="card preview-card see-more-card" id="find-more-books-card" href="/search">
+                                        <h5 class="see-more-card-text">Find more books to add to your collection</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="SearchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="searchTitleModalLabel">Find a Book</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <div id="modal-search-wrapper">
+                                <input type="text" class="primary-text-field" id="modal-search-field"
+                                    placeholder="Find a book by title, author, or year">
+                                <div id="modal-search-results-wrapper">
+                                    <div class="row">
+                                        <div id="modal-search-results-list" class="col">
+                                            <!--                                            Placeholder Cards-->
+                                            <!-- <div class="card modal-card">
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <img class="modal-card-cover"
+                                                        src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                        alt="">
+                                                </div>
+                                                <div class="col-10">
+                                                    <div class="modal-info-wrapper">
+                                                        <h4 class="modal-card-title">The Witchfinder (Amos Walker
+                                                            Mystery Series)</h4>
+                                                        <h5 class="modal-card-author">Author</h5>
+                                                        <p class="modal-card-year">Year</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card modal-card">
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <img class="modal-card-cover"
+                                                        src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                        alt="">
+                                                </div>
+                                                <div class="col-10">
+                                                    <h4 class="modal-card-title">The Witchfinder (Amos Walker
+                                                        Mystery Series)</h4>
+                                                    <h5 class="modal-card-author">Author</h5>
+                                                    <p class="modal-card-year">Year</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card modal-card">
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <img class="modal-card-cover"
+                                                        src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                        alt="">
+                                                </div>
+                                                <div class="col-10">
+                                                    <h4 class="modal-card-title">The Witchfinder (Amos Walker
+                                                        Mystery Series)</h4>
+                                                    <h5 class="modal-card-author">Author</h5>
+                                                    <p class="modal-card-year">Year</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card modal-card">
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <img class="modal-card-cover"
+                                                        src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                        alt="">
+                                                </div>
+                                                <div class="col-10">
+                                                    <h4 class="modal-card-title">The Witchfinder (Amos Walker
+                                                        Mystery Series)</h4>
+                                                    <h5 class="modal-card-author">Author</h5>
+                                                    <p class="modal-card-year">Year</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card modal-card">
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <img class="modal-card-cover"
+                                                        src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                        alt="">
+                                                </div>
+                                                <div class="col-10">
+                                                    <h4 class="modal-card-title">The Witchfinder (Amos Walker
+                                                        Mystery Series)</h4>
+                                                    <h5 class="modal-card-author">Author</h5>
+                                                    <p class="modal-card-year">Year</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card modal-card">
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <img class="modal-card-cover"
+                                                        src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                        alt="">
+                                                </div>
+                                                <div class="col-10">
+                                                    <h4 class="modal-card-title">The Witchfinder (Amos Walker
+                                                        Mystery Series)</h4>
+                                                    <h5 class="modal-card-author">Author</h5>
+                                                    <p class="modal-card-year">Year</p>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="button-primary" id="modal-browse-button" onclick="window.location='/search'">Browse More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer class="footer-text">
+        <div class="container">
+            <p class="float-end mb-1">
+                <a id="back-to-top" href="#"> Back to top </a>
+            </p>
+
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/collections">Collection</a></li>
+                <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
+            </ul>
+
+            <p class="d-flex justify-content-center mb-1">
+                This is a working demo.
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>
