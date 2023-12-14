@@ -1,0 +1,11 @@
+#main-book-thumbnail{
+    width: 95%;
+    border-radius: var(--main-border-radius);
+    box-shadow: black 0 0 5px 0;
+
+    view-transition-name: book-cover;
+}
+
+.details-card{
+    width: 100%;
+}
