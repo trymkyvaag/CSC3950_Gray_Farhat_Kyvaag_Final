@@ -1,0 +1,87 @@
+#breadcrumbs-wrapper{
+    width: 100%;
+    translate: 0 3rem;
+    padding-inline: 2rem;
+}
+
+.breadcrumb-item{
+    background-color: var(--secondary-button-color);
+    margin-inline: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: var(--main-border-radius);
+    padding-inline: 1rem;
+    padding-bottom: 0.1rem;
+    padding-top: 0.7rem;
+}
+
+.breadcrumb-item a{
+    color: white;
+    text-decoration: none;
+}
+
+#main-search-results-wrapper{
+    padding-inline: 1rem;
+    padding-block: 7rem;
+    overflow: auto;
+    max-height: 84dvh;
+    -webkit-mask: var(--mask-fade);
+    mask: var(--mask-fade);
+}
+
+#see-more-button-wrapper{
+    padding-bottom: 2em;
+}
+
+.aside-wrapper{
+    width: 100%;
+}
+
+.accordion, .accordion-header, .accordion-body, .accordion-item, .accordion-button{
+    border: transparent;
+    background: transparent;
+}
+
+.accordion-body{
+    margin: 0;
+    padding: 0;
+}
+
+.accordion-header{
+    margin-bottom: 1rem;
+}
+
+.accordion-button:not(.collapsed){
+    background: transparent;
+    color: var(--main-background-color);
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA3klEQVR4nO3YSwrCMBRG4eMOVQwZ6OoVQfGxgQqVQgsiSe0zucX/QGdJuR+hgxSUUkoppZTqmQPuwBlYY68NcAGegI8tWgE3oKyfom1xhnw9UzPfo5452PVjoSWM/0KU9azRtoENuTE+MlM1a2u7wMYXcCDPN1sEZtl3fYEFjBuLsIBxUyFyYtzUiBwYNxciJWZ2RApMMsScmOSIOTDZEFNisiOmwJhBjMGYQwzBmEX0wZhHdMEsBvHr7mDtjjP4ZBZzEl0xi0LEMItENFW/lE7A0ejvJaWUUkop9U+9AdnJ7S7GX9jsAAAAAElFTkSuQmCC");
+}
+.accordion-button::after {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA3klEQVR4nO3YSwrCMBRG4eMOVQwZ6OoVQfGxgQqVQgsiSe0zucX/QGdJuR+hgxSUUkoppZTqmQPuwBlYY68NcAGegI8tWgE3oKyfom1xhnw9UzPfo5452PVjoSWM/0KU9azRtoENuTE+MlM1a2u7wMYXcCDPN1sEZtl3fYEFjBuLsIBxUyFyYtzUiBwYNxciJWZ2RApMMsScmOSIOTDZEFNisiOmwJhBjMGYQwzBmEX0wZhHdMEsBvHr7mDtjjP4ZBZzEl0xi0LEMItENFW/lE7A0ejvJaWUUkop9U+9AdnJ7S7GX9jsAAAAAElFTkSuQmCC");
+}
+
+.accordion-button:focus{
+    box-shadow: none;
+}
+
+.filter-field{
+    margin-bottom: 2rem;
+}
+
+.filter-field-label{
+    margin-bottom: 0.5rem;
+}
+
+#narrow-author-list, #narrow-year-list, #search-year-list{
+    padding-block: 3rem;
+    overflow: auto;
+    max-height: 30rem;
+    -webkit-mask: var(--mask-fade);
+    mask: var(--mask-fade);
+}
+
+ul{
+    list-style: none;
+}
