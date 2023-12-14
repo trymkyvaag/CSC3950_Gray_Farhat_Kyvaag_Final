@@ -68,13 +68,14 @@ body{
 }
 
 .account-dropdown-toggle{
-    padding: 0.3rem;
-    margin-left: 1rem;
+    padding: 0.4rem;
+    margin-left: 2rem;
     border: 0 transparent;
     border-radius: 0.5rem;
     background: var(--primary-button-color);
     background-image: var(--grain);
 }
+
 .nav-profile-picture{
     aspect-ratio: 1/1;
     width: 2rem;
@@ -246,6 +247,11 @@ body{
     .offcanvas-header, .offcanvas-body{
         background-color: var(--main-background-color);
         background-image: var(--grain);
+    }
+
+    .account-dropdown-toggle{
+        margin: 0;
+        width: 100%;
     }
 }
 
