@@ -28,8 +28,8 @@ app.get('/bookshelves', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/pages/bookshelves.html'));
 });
 
-app.get('/profile', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/pages/signin.html'));
+app.get('/account', (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/pages/account.html'));
 });
 
 
