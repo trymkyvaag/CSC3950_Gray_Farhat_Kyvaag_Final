@@ -17,6 +17,8 @@
     <!--    Stylesheets-->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/bookshelves.css">
+
     <!--    Scripts-->
     <script src="js/collections.js" defer></script>
 
@@ -83,12 +85,78 @@
                     <!--                    Main Page Content-->
                     <div id="main-page-content">
 
-                        <div id="collections-preview-wrapper">
-                            <h3 class="home-heading">Your Collection</h3>
-                            <div class="row row-cols-2 row-cols-lg-5 row-cols-sm-3 g-2" id="collections-preview-grid">
+                        <div id="favorites-preview-wrapper">
+                            <h3 class="home-heading">Favorites</h3>
+                            <div class="row row-cols-2 row-cols-lg-5 row-cols-sm-3 g-2" id="favorites-preview-grid">
                                 <div class="col">
-                                    <a class="card preview-card see-more-card" id="find-more-books-card" href="/search">
-                                        <h5 class="see-more-card-text">Find more books to add to your collection</h5>
+                                    <a class="card preview-card see-more-card" href="/search">
+                                        <h5 class="see-more-card-text">Search For More Books</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="reading-preview-wrapper">
+                            <h3 class="home-heading">Now Reading</h3>
+                            <div class="row row-cols-2 row-cols-lg-5 row-cols-sm-3 g-2" id="reading-preview-grid">
+                                <div class="col">
+                                    <a class="card preview-card see-more-card find-more-books-card" href="/search">
+                                        <h5 class="see-more-card-text">Search For More Books</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="toread-preview-wrapper">
+                            <h3 class="home-heading">To Read</h3>
+                            <div class="row row-cols-2 row-cols-lg-5 row-cols-sm-3 g-2" id="toread-preview-grid">
+                                <div class="col">
+                                    <a class="card preview-card see-more-card find-more-books-card" href="/search">
+                                        <h5 class="see-more-card-text">Search For More Books</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="haveread-preview-wrapper">
+                            <h3 class="home-heading">Have Read</h3>
+                            <div class="row row-cols-2 row-cols-lg-5 row-cols-sm-3 g-2" id="haveread-preview-grid">
+                                <div class="col">
+                                    <a class="card preview-card see-more-card find-more-books-card" href="/search">
+                                        <h5 class="see-more-card-text">Search For More Books</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="foryou-preview-wrapper">
+                            <h3 class="home-heading">Books For You</h3>
+                            <div class="row row-cols-2 row-cols-lg-5 row-cols-sm-3 g-2" id="foryou-preview-grid">
+                                <div class="col">
+                                    <a class="card preview-card see-more-card find-more-books-card" href="/search">
+                                        <h5 class="see-more-card-text">Search For More Books</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="purchased-preview-wrapper">
+                            <h3 class="home-heading">Purchased Books</h3>
+                            <div class="row row-cols-2 row-cols-lg-5 row-cols-sm-3 g-2" id="purchased-preview-grid">
+                                <div class="col">
+                                    <a class="card preview-card see-more-card find-more-books-card" href="/search">
+                                        <h5 class="see-more-card-text">Search For More Books</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="recents-preview-wrapper">
+                            <h3 class="home-heading">Recently Viewed</h3>
+                            <div class="row row-cols-2 row-cols-lg-5 row-cols-sm-3 g-2" id="recents-preview-grid">
+                                <div class="col">
+                                    <a class="card preview-card see-more-card find-more-books-card" href="/search">
+                                        <h5 class="see-more-card-text">Search For More Books</h5>
                                     </a>
                                 </div>
                             </div>
