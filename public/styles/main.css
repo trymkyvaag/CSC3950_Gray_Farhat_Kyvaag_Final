@@ -66,6 +66,20 @@ body{
     color: var(--link-hover-color);
 }
 
+.account-dropdown-toggle{
+    padding: 0.3rem;
+    margin-left: 1rem;
+    border: 0 transparent;
+    border-radius: 0.5rem;
+    background: var(--primary-button-color);
+    background-image: var(--grain);
+}
+.nav-profile-picture{
+    aspect-ratio: 1/1;
+    width: 2rem;
+    border-radius: 0.3rem;
+}
+
 .button-primary{
     width: 100%;
     border-radius: var(--main-border-radius);
