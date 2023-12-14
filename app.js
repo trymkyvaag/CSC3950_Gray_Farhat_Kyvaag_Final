@@ -1,7 +1,9 @@
 const express = require('express');
 const path = require('path');
 var morgan = require('morgan');
-const addCheck = require('./public/javascript/addCheckUser.js');
+// const addCheck = require('./public/javascript/addCheckUser.js');
+const addCheckUser = require('./public/javascript/addCheckUser.js');
+
 
 const port = 3000;
 const app = express();
@@ -36,6 +38,11 @@ app.get('/account', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/pages/account.html'));
 });
 
+
+app.get('/checkAndAddUser', async (req, res) => {
+  addCheckUser.checkAndAddUser(); 
+  res.send('Check and add user completed.');
+});
 
 
 app.listen(port, () => {
