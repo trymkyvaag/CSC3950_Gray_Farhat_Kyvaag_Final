@@ -29,7 +29,7 @@ function handleLogin() {
 
 firebase.auth().onAuthStateChanged(user => {
   if(user) {
-    window.location = 'widget.html'; //After successful login, user will be redirected to home.html
+    window.location = 'home.html'; //After successful login, user will be redirected to home.html
   }
 });
 
