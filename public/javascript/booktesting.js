@@ -289,24 +289,24 @@ async function createModalBookCard(imgUrl, title, author, year, inCollection, vo
     yearHTML.innerHTML = year;
     wrapper.appendChild(yearHTML);
 
-    // Create button
-    const addRmButton = document.createElement("button");
-    addRmButton.className = "round-button list-card-add-remove-button";
-    addRmButton.setAttribute("id", book_id.toString());
-    if (inCollection) {
-        addRmButton.className += " add-to-remove";
-        // addRmButton.addEventListener("click", removeFromCollection, false);
-    }
-    else {
-        // addRmButton.addEventListener("click", addToCollection, false);
-    }
-    row.appendChild(addRmButton);
-
-    // Create button img
-    const buttonImg = document.createElement("img");
-    buttonImg.setAttribute("src", "styles/icons/addRemoveSmall.png");
-    buttonImg.setAttribute("alt", "Add or remove button image");
-    addRmButton.appendChild(buttonImg);
+    // // Create button
+    // const addRmButton = document.createElement("button");
+    // addRmButton.className = "round-button list-card-add-remove-button";
+    // addRmButton.setAttribute("id", book_id.toString());
+    // if (inCollection) {
+    //     addRmButton.className += " add-to-remove";
+    //     // addRmButton.addEventListener("click", removeFromCollection, false);
+    // }
+    // else {
+    //     // addRmButton.addEventListener("click", addToCollection, false);
+    // }
+    // row.appendChild(addRmButton);
+    //
+    // // Create button img
+    // const buttonImg = document.createElement("img");
+    // buttonImg.setAttribute("src", "styles/icons/addRemoveSmall.png");
+    // buttonImg.setAttribute("alt", "Add or remove button image");
+    // addRmButton.appendChild(buttonImg);
 
     document.getElementById("modal-search-results-list").appendChild(modal_card);
 }
@@ -370,23 +370,43 @@ async function createMainBookCard(
     yearHTML.innerHTML = year;
     wrapper.appendChild(yearHTML);
 
-    // Create button
-    const addRmButton = document.createElement("button");
-    addRmButton.className = "round-button list-card-add-remove-button";
-    addRmButton.setAttribute("id", book_id.toString());
-    if (inCollection) {
-        addRmButton.className += " add-to-remove";
-        // addRmButton.addEventListener("click", removeFromCollection, false);
-    } else {
-        // addRmButton.addEventListener("click", addToCollection, false);
-    }
-    row.appendChild(addRmButton);
+    // // Create button
+    // const addRmButton = document.createElement("button");
+    // addRmButton.className = "round-button list-card-add-remove-button";
+    // addRmButton.setAttribute("id", book_id.toString());
+    // if (inCollection) {
+    //     addRmButton.className += " add-to-remove";
+    //     addRmButton.addEventListener("click", removeFromCollection, false);
+    // } else {
+    //     addRmButton.addEventListener("click", addToCollection, false);
+    // }
+    // row.appendChild(addRmButton);
+    //
+    // // Create button img
+    // const buttonImg = document.createElement("img");
+    // buttonImg.setAttribute("src", "styles/icons/addRemoveSmall.png");
+    // buttonImg.setAttribute("alt", "Add or remove button image");
+    // addRmButton.appendChild(buttonImg);
 
-    // Create button img
-    const buttonImg = document.createElement("img");
-    buttonImg.setAttribute("src", "styles/icons/addRemoveSmall.png");
-    buttonImg.setAttribute("alt", "Add or remove button image");
-    addRmButton.appendChild(buttonImg);
+    modal_card.addEventListener("click", handleClick)
 
     document.getElementById("main-search-results-list").appendChild(modal_card);
+}
+
+
+
+
+
+// Card Transition Helpers
+// Function to handle the click event
+function handleClick(event) {
+    // Access the clicked div
+    const clickedDiv = event.target;
+    const bookCover = clickedDiv.getElementsByClassName("modal-card-cover")
+    // Perform actions when the div is clicked
+    console.log("Div clicked:", clickedDiv.textContent);
+
+    bookCover.item(0).style.viewTransitionName = 'book-cover';
+    window.location.href = '/details';
+    console.log("page redirected")
 }
