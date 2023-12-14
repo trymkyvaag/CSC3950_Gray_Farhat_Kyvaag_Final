@@ -40,6 +40,8 @@ async function searchTitle(title) {
 const searchButton = document.getElementById('main-search-button');
 
 searchButton.addEventListener('click', async () => {
+    document.getElementById("main-search-results-list").innerHTML = '';
+
     const searchInput = document.getElementById('main-search-field');
     const title = searchInput.value;
     console.log("Keyword search: " + title);
