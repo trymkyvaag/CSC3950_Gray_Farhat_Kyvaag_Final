@@ -437,7 +437,9 @@ function handleClick(event) {
 
     }
 
-    // bookCover.item(0).style.viewTransitionName = 'book-cover';
+    // Transition
+    const bookCover = clickedDiv.getElementsByClassName("modal-card-cover");
+    bookCover.item(0).style.viewTransitionName = 'book-cover';
     window.location.href = '/details';
     // console.log("page redirected")
 }
