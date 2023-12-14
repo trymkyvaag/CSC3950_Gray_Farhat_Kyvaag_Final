@@ -1,6 +1,8 @@
 var url = ``;
 var key = `AIzaSyDC9zpVAnoBNi0T__-qUv6PbdA_sgrnbGY`;
 var client_id = '';
+var index = 0;
+var lastSerachWord = '';
 // import { createMainBookCard } from "customComponents";
 /**
  * 
@@ -24,20 +26,18 @@ async function searchForBook(title, author) {
     return result;
 }
 
-async function searchTitle(title) {
-    url = `https://www.googleapis.com/books/v1/volumes?q=${title}&key=${key}`;
+async function searchTitle(title = lastSerachWord, index = 0) {
+    lastSerachWord = title;
+    url = `https://www.googleapis.com/books/v1/volumes?q=${title}&key=${key}&startIndex=${index}`;
     var result = await send_unauthorized(url, "GET");
     var returnResult = JSON.parse(result);
     return returnResult;
 }
 
-// async function addToScreen(searchResult) {
-//     console.log(searchResult.headers);
 
-//     createMainBookCard();
-// }
 
 const searchButton = document.getElementById('main-search-button');
+const loadMoreButton = document.getElementById('load-more-button');
 
 searchButton.addEventListener('click', async () => {
     document.getElementById("main-search-results-list").innerHTML = '';
@@ -67,6 +67,35 @@ searchButton.addEventListener('click', async () => {
     } else {
         console.error("Invalid searchResults format. Unable to iterate.");
     }
+});
+
+async function loadMore() {
+    index += document.getElementById("main-search-results-list").childElementCount;
+
+    const returnResult = await searchTitle(title = lastSerachWord, index = index);
+    console.log("Search Resultts gotten successfully");
+    // console.log(searchResults);
+    document.getElementById('main-search-field').value = '';
+    console.log("SearchResults:");
+    if (returnResult && returnResult.items) {
+        for (const book of returnResult.items) {
+            console.log(book);
+
+            createMainBookCard(
+                book.volumeInfo.imageLinks.thumbnail || 'default-thumbnail-url',
+                book.volumeInfo.title || 'Unknown Title',
+                book.volumeInfo.authors || 'Unknown Author', //&& book.volumeInfo.authors.join(', ')) || 'Unknown Author',
+                book.volumeInfo.publishedDate || 'Unknown Date',
+                false,
+                book.id || 'unknown-id'
+            );
+        }
+    } else {
+        console.error("Invalid searchResults format. Unable to iterate.");
+    }
+}
+loadMoreButton.addEventListener('click', async () => {
+    loadMore();
 });
 
 
