@@ -39,10 +39,22 @@ app.get('/account', (req, res) => {
 });
 
 
-app.get('/checkAndAddUser', async (req, res) => {
-  addCheckUser.checkAndAddUser(); 
-  res.send('Check and add user completed.');
+app.post('/checkAndAddUser', async (req, res) => {
+  const userId = req.body.userId;
+
+  try {
+    if (userId) {
+      await addCheckUser.checkAndAddUser(userId);
+      res.json({ success: true, message: 'User ID saved successfully' });
+    } else {
+      res.status(400).json({ success: false, message: 'Invalid user ID' });
+    }
+  } catch (error) {
+    console.error('Error in checkAndAddUser:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
 });
+
 
 
 app.listen(port, () => {

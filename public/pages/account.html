@@ -103,8 +103,8 @@
                                         </div>
                                         <input type="text" class="primary-text-field" id="books-uid-field"
                                             placeholder="Paste your Google Books User ID here">
-                                        <button class="button-primary" id="save-uid-button"
-                                            onclick=checkAndAddUser()>Save User
+                                        <button class="button-primary" id="save-uid-button" onclick=saveUserId()>Save
+                                            User
                                             ID</button>
                                         <p id="example-uid"><strong>Example:
                                             </strong>uid=<mark>113459348538234828345</mark></p>
@@ -121,7 +121,30 @@
             </main>
         </div>
     </div>
-    <script type="module" src="../javascript/addCheckUser.js">
+    <script>
+        function saveUserId() {
+            var userId = document.getElementById("books-uid-field").value;
+            console.log(userId);
+
+            if (userId.trim() !== "") {
+                fetch('http://localhost:3000/checkAndAddUser', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ userId: userId }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Response from server:', data);
+                    })
+                    .catch(error => {
+                        console.error('Error sending user ID:', error);
+                    });
+            } else {
+                console.log('User ID is empty');
+            }
+        }
     </script>
 
 
