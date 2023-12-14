@@ -55,14 +55,25 @@ searchButton.addEventListener('click', async () => {
         for (const book of returnResult.items) {
             console.log(book);
 
-            createMainBookCard(
-                book.volumeInfo.imageLinks.thumbnail || 'default-thumbnail-url',
-                book.volumeInfo.title || 'Unknown Title',
-                book.volumeInfo.authors || 'Unknown Author', //&& book.volumeInfo.authors.join(', ')) || 'Unknown Author',
-                book.volumeInfo.publishedDate || 'Unknown Date',
-                false,
-                book.id || 'unknown-id'
-            );
+            try{
+                createMainBookCard(
+                    book.volumeInfo.imageLinks.thumbnail || 'default-thumbnail-url',
+                    book.volumeInfo.title || 'Unknown Title',
+                    book.volumeInfo.authors || 'Unknown Author', //&& book.volumeInfo.authors.join(', ')) || 'Unknown Author',
+                    book.volumeInfo.publishedDate || 'Unknown Date',
+                    false,
+                    book.id || 'unknown-id'
+                );
+            }catch(err){
+                createMainBookCard(
+                    // book.volumeInfo.imageLinks.thumbnail || 'default-thumbnail-url',
+                    book.volumeInfo.title || 'Unknown Title',
+                    book.volumeInfo.authors || 'Unknown Author', //&& book.volumeInfo.authors.join(', ')) || 'Unknown Author',
+                    book.volumeInfo.publishedDate || 'Unknown Date',
+                    false,
+                    book.id || 'unknown-id'
+                );
+            }
         }
     } else {
         console.error("Invalid searchResults format. Unable to iterate.");
@@ -406,7 +417,7 @@ function handleClick(event) {
     // Perform actions when the div is clicked
     console.log("Div clicked:", clickedDiv.textContent);
 
-    bookCover.item(0).style.viewTransitionName = 'book-cover';
+    // bookCover.item(0).style.viewTransitionName = 'book-cover';
     window.location.href = '/details';
     console.log("page redirected")
 }
