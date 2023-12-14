@@ -1,7 +1,7 @@
 var url = ``;
 var key = `AIzaSyDC9zpVAnoBNi0T__-qUv6PbdA_sgrnbGY`;
 var client_id = '';
-
+console.log("IN BOOKTESTING");
 /**
  * 
  * Saving promise results:
@@ -23,6 +23,39 @@ async function searchForBook(title, author) {
     var result = await send_unauthorized(url, "GET");
     return result;
 }
+
+async function searchTitle(title) {
+    url = `https://www.googleapis.com/books/v1/volumes?q=${title}&key=${key}`;
+    var result = await send_unauthorized(url, "GET");
+    return result;
+}
+
+console.log("TEST SEARCH");
+const searchButton = document.getElementById('main-search-button');
+searchButton.addEventListener('click', async () => {
+    console.log("In event listner");
+    // Get the title and author from user input 
+    const searchInput = document.getElementById('main-search-field');
+    const title = searchInput.value;
+    console.log("Keyword search: " + title);
+
+
+    // Call the searchForBook function with the provided parameters
+    const searchResults = await searchTitle(title);
+    console.log("Search Resultts: " + searchResults);
+
+    console.log(searchResults);
+    document.getElementById('main-search-field').value = '';
+
+
+
+});
+
+// Process the search results (replace with your logic)
+console.log(searchResults);
+
+searchForBook("Hello", "");
+console.log("FINISH");
 
 /**
  * Returns a bookshelf based on the index parameter.
@@ -152,7 +185,7 @@ function send_unauthorized(url, method) {
 // })
 
 /**
- * An example of adding a book to the favorites shelf 
+ * An example of adding a book to the favorites shelf
  */
 // var x = addBookToShelf("Sm5AKLXKxHgC", 0).then(result => {
 //     console.log(result); //prints out the json response
