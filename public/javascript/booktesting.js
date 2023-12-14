@@ -1,7 +1,7 @@
 var url = ``;
 var key = `AIzaSyDC9zpVAnoBNi0T__-qUv6PbdA_sgrnbGY`;
 var client_id = '';
-console.log("IN BOOKTESTING");
+// import { createMainBookCard } from "customComponents";
 /**
  * 
  * Saving promise results:
@@ -27,35 +27,46 @@ async function searchForBook(title, author) {
 async function searchTitle(title) {
     url = `https://www.googleapis.com/books/v1/volumes?q=${title}&key=${key}`;
     var result = await send_unauthorized(url, "GET");
-    return result;
+    var returnResult = JSON.parse(result);
+    return returnResult;
 }
 
-console.log("TEST SEARCH");
+// async function addToScreen(searchResult) {
+//     console.log(searchResult.headers);
+
+//     createMainBookCard();
+// }
+
 const searchButton = document.getElementById('main-search-button');
+
 searchButton.addEventListener('click', async () => {
-    console.log("In event listner");
-    // Get the title and author from user input 
     const searchInput = document.getElementById('main-search-field');
     const title = searchInput.value;
     console.log("Keyword search: " + title);
-
-
     // Call the searchForBook function with the provided parameters
-    const searchResults = await searchTitle(title);
-    console.log("Search Resultts: " + searchResults);
-
-    console.log(searchResults);
+    const returnResult = await searchTitle(title);
+    console.log("Search Resultts gotten successfully");
+    // console.log(searchResults);
     document.getElementById('main-search-field').value = '';
+    console.log("SearchResults:");
+    if (returnResult && returnResult.items) {
+        for (const book of returnResult.items) {
+            console.log(book);
 
-
-
+            createMainBookCard(
+                book.volumeInfo.imageLinks.thumbnail || 'default-thumbnail-url',
+                book.volumeInfo.title || 'Unknown Title',
+                book.volumeInfo.authors || 'Unknown Author', //&& book.volumeInfo.authors.join(', ')) || 'Unknown Author',
+                book.volumeInfo.publishedDate || 'Unknown Date',
+                false,
+                book.id || 'unknown-id'
+            );
+        }
+    } else {
+        console.error("Invalid searchResults format. Unable to iterate.");
+    }
 });
 
-// Process the search results (replace with your logic)
-console.log(searchResults);
-
-searchForBook("Hello", "");
-console.log("FINISH");
 
 /**
  * Returns a bookshelf based on the index parameter.
@@ -192,3 +203,159 @@ function send_unauthorized(url, method) {
 // }).catch(error => {
 
 // })
+
+
+// Creates a book card for the main modal search results list
+async function createModalBookCard(imgUrl, title, author, year, inCollection, volume_id) {
+    // Create card
+    const modal_card = document.createElement("div");
+    modal_card.className = "card modal-card";
+    if (inCollection)
+        modal_card.className += " corner-fold";
+
+    // Create row
+    const row = document.createElement("div");
+    row.className = "row";
+    modal_card.appendChild(row);
+
+    // Create first column
+    const col1 = document.createElement("div");
+    col1.className = "col-2";
+    row.appendChild(col1);
+
+    // Create cover image
+    const img = document.createElement("img");
+    img.className = "modal-card-cover";
+    img.setAttribute("src", imgUrl);
+    img.setAttribute("alt", "Book cover image");
+    col1.appendChild(img);
+
+    // Create second column
+    const col2 = document.createElement("div");
+    col2.className = "col-10";
+    row.appendChild(col2);
+
+    // Create info wrapper
+    const wrapper = document.createElement("div");
+    wrapper.className = "modal-info-wrapper";
+    col2.appendChild(wrapper);
+
+    // Create title
+    const titleHTML = document.createElement("h4");
+    titleHTML.className = "modal-card-title";
+    titleHTML.innerHTML = title;
+    wrapper.appendChild(titleHTML);
+
+    // Create author
+    const authorHTML = document.createElement("h5");
+    authorHTML.className = "modal-card-author";
+    authorHTML.innerHTML = author;
+    wrapper.appendChild(authorHTML);
+
+    // Create year
+    const yearHTML = document.createElement("p");
+    yearHTML.className = "modal-card-year";
+    yearHTML.innerHTML = year;
+    wrapper.appendChild(yearHTML);
+
+    // Create button
+    const addRmButton = document.createElement("button");
+    addRmButton.className = "round-button list-card-add-remove-button";
+    addRmButton.setAttribute("id", book_id.toString());
+    if (inCollection) {
+        addRmButton.className += " add-to-remove";
+        // addRmButton.addEventListener("click", removeFromCollection, false);
+    }
+    else {
+        // addRmButton.addEventListener("click", addToCollection, false);
+    }
+    row.appendChild(addRmButton);
+
+    // Create button img
+    const buttonImg = document.createElement("img");
+    buttonImg.setAttribute("src", "styles/icons/addRemoveSmall.png");
+    buttonImg.setAttribute("alt", "Add or remove button image");
+    addRmButton.appendChild(buttonImg);
+
+    document.getElementById("modal-search-results-list").appendChild(modal_card);
+}
+
+// Creates a book card for the main search page results list
+async function createMainBookCard(
+    imgUrl,
+    title,
+    author,
+    year,
+    inCollection,
+    book_id
+) {
+    // Create card
+    const modal_card = document.createElement("div");
+    modal_card.className = "card modal-card";
+    if (inCollection) modal_card.className += " corner-fold";
+
+    // Create row
+    const row = document.createElement("div");
+    row.className = "row";
+    modal_card.appendChild(row);
+
+    // Create first column
+    const col1 = document.createElement("div");
+    col1.className = "col-2";
+    row.appendChild(col1);
+
+    // Create cover image
+    const img = document.createElement("img");
+    img.className = "modal-card-cover";
+    img.setAttribute("src", imgUrl);
+    img.setAttribute("alt", "Book cover image");
+    col1.appendChild(img);
+
+    // Create second column
+    const col2 = document.createElement("div");
+    col2.className = "col-10";
+    row.appendChild(col2);
+
+    // Create info wrapper
+    const wrapper = document.createElement("div");
+    wrapper.className = "modal-info-wrapper";
+    col2.appendChild(wrapper);
+
+    // Create title
+    const titleHTML = document.createElement("h4");
+    titleHTML.className = "modal-card-title";
+    titleHTML.innerHTML = title;
+    wrapper.appendChild(titleHTML);
+
+    // Create author
+    const authorHTML = document.createElement("h5");
+    authorHTML.className = "modal-card-author";
+    authorHTML.innerHTML = author;
+    wrapper.appendChild(authorHTML);
+
+    // Create year
+    const yearHTML = document.createElement("p");
+    yearHTML.className = "modal-card-year";
+    yearHTML.innerHTML = year;
+    wrapper.appendChild(yearHTML);
+
+    // Create button
+    const addRmButton = document.createElement("button");
+    addRmButton.className = "round-button list-card-add-remove-button";
+    addRmButton.setAttribute("id", book_id.toString());
+    if (inCollection) {
+        addRmButton.className += " add-to-remove";
+        // addRmButton.addEventListener("click", removeFromCollection, false);
+    } else {
+        // addRmButton.addEventListener("click", addToCollection, false);
+    }
+    row.appendChild(addRmButton);
+
+    // Create button img
+    const buttonImg = document.createElement("img");
+    buttonImg.setAttribute("src", "styles/icons/addRemoveSmall.png");
+    buttonImg.setAttribute("alt", "Add or remove button image");
+    addRmButton.appendChild(buttonImg);
+
+    document.getElementById("main-search-results-list").appendChild(modal_card);
+}
