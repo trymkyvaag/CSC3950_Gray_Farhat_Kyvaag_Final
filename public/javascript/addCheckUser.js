@@ -1,44 +1,38 @@
-const firebase = require('firebase/app');
-const db = require('firebase/database');
+var admin = require("firebase-admin");
 
-var config = {
-    apiKey: "AIzaSyDC9zpVAnoBNi0T__-qUv6PbdA_sgrnbGY",
-    authDomain: "webdevfinal-1b6d7.firebaseapp.com",
-    projectId: "webdevfinal-1b6d7",
-    storageBucket: "webdevfinal-1b6d7.appspot.com",
-    messagingSenderId: "831425261552",
-    appId: "1:831425261552:web:69f0d0e1e7a5193ef57735",
-    measurementId: "G-CJPK72JB1N"
-};
-const app = firebase.initializeApp(config);
-const database = db.getDatabase();
+var serviceAccount = require("../../key.json");
 
-const rootRef = db.ref(database);
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://webdevfinal-1b6d7-default-rtdb.firebaseio.com"
+});
+
+const db = admin.database();
+const rootRef = db.ref('/');
 
 async function checkAndAddUser() {
     try {
         // Check if user with the same UID exists
-        // var userId = document.getElementById("books-uid-field").value;
-        var userId = "1234" //TODO: get from line above
-        var userEmail = "test@mail.no"; //Same thing
+        var userId = "1234123";
+        var userEmail = "test@mai2l.no";
         console.log(userId);
-        // const userQuery = db.query(rootRef, db.equalTo('uid', user.uid));
+
         const tmpUser = {
             email: userEmail,
             uid: userId,
         }
-        // const userSnapshot = await db.get(userQuery);
-        const snapshot = await db.get(rootRef);
+
+        const snapshot = await rootRef.once('value'); // Use once('value') to get the data
+
         const users = snapshot.val();
 
         // Check if user with the same UID already exists
         const userExists = Object.values(users).some(existingUser => existingUser.uid === tmpUser.uid);
 
-
         if (userExists) {
             console.log('User already exists in the database');
         } else {
-            await db.push(rootRef, tmpUser);
+            await rootRef.push(tmpUser);
             console.log('New user added to the database');
         }
     } catch (error) {
@@ -48,7 +42,7 @@ async function checkAndAddUser() {
 
 async function getAllEmails() {
     try {
-        const snapshot = await db.get(rootRef);
+        const snapshot = await rootRef.once('value');
 
         if (snapshot.exists()) {
             const users = snapshot.val();
@@ -73,7 +67,8 @@ async function getAllEmails() {
     }
 }
 
-
-// getAllEmails();
 checkAndAddUser();
-// export { checkAndAddUser, getAllEmails }
+module.exports = {
+    checkAndAddUser,
+    getAllEmails
+};
