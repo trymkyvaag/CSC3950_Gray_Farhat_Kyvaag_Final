@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="styles/account.css">
     <!--    Scripts-->
     <script src="js/collections.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+    <!-- <script data-main="scripts/main" src="../javascript/require.js"></script> -->
 
     <!--    Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,8 +103,7 @@
                                         </div>
                                         <input type="text" class="primary-text-field" id="books-uid-field"
                                             placeholder="Paste your Google Books User ID here">
-                                        <button class="button-primary" id="save-uid-button"
-                                            onclick=checkAndAddUser()>Save User
+                                        <button class="button-primary" id="save-uid-button" onclick=''>Save User
                                             ID</button>
                                         <p id="example-uid"><strong>Example:
                                             </strong>uid=<mark>113459348538234828345</mark></p>
@@ -118,7 +120,15 @@
             </main>
         </div>
     </div>
-    <script src="../javascript/addCheckUser.js"></script>
+    <!-- <script type="module">
+        import { checkAndAddUser, getAllEmails } from '../javascript/addCheckUser.js';
+
+        // Example: Call the functions when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAndAddUser();
+            getAllEmails();
+        });
+    </script> -->
 
 
     <!--Footer Section-->

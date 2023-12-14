@@ -15,25 +15,16 @@ const database = db.getDatabase();
 
 const rootRef = db.ref(database);
 
-// const newData = {
-//     email: "john@example.com",
-//     uid: 123
-// };
-
-// const newEntryRef = db.push(rootRef, newData);
-// const newEntryKey = newEntryRef.key;
-// console.log(`New entry added with key: ${newEntryKey}`);
-
-
 async function checkAndAddUser() {
     try {
         // Check if user with the same UID exists
-        var userId = document.getElementById("books-uid-field").value;
-        var userEmail = "test@mail.no";
-        console.log(user.uid)
+        // var userId = document.getElementById("books-uid-field").value;
+        var userId = "1234" //TODO: get from line above
+        var userEmail = "test@mail.no"; //Same thing
+        console.log(userId);
         // const userQuery = db.query(rootRef, db.equalTo('uid', user.uid));
         const tmpUser = {
-            email: email,
+            email: userEmail,
             uid: userId,
         }
         // const userSnapshot = await db.get(userQuery);
@@ -82,13 +73,7 @@ async function getAllEmails() {
     }
 }
 
+
 // getAllEmails();
-
-
-// const newUser = {
-//     email: "tom@example.com",
-//     uid: "1223"
-// };
-
-// checkAndAddUser(newUser);
-
+checkAndAddUser();
+// export { checkAndAddUser, getAllEmails }
