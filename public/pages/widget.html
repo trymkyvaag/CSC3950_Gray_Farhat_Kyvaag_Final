@@ -1,6 +1,70 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <div id="firebaseui-auth-container">Hello world this is /widget</div>
-  </body>
+
+<head>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+  <script src="../javascript/sample-config.js"></script>
+  <script src="../javascript/common.js"></script>
+  <link href="../css/style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+
+<body>
+  <script>
+    firebase.auth().onAuthStateChanged(user => {
+
+      if (user) {
+        console.log('user is signed in');
+        console.log(user);
+
+        document.getElementById('user-signed-in').style.display = 'block';
+        document.getElementById('user-signed-out').style.display = 'none';
+        document.getElementById('name').textContent = user.displayName;
+        document.getElementById('email').textContent = user.email;
+        document.getElementById('phone').textContent = user.phoneNumber;
+      } else {
+        console.log('user is not signed in');
+        // document.getElementById('user-signed-out').style.display = 'none';
+        document.getElementById('sign-out').style.display = 'none';
+        window.location = '/'; //After successful login, user will be redirected to home.html
+      }
+    });
+  </script>
+
+  <div id="container">
+    <h3>FirebaseUI Demo</h3>
+    <div id="loaded" class="hidden">
+      <div id="main">
+        <div id="user-signed-in" class="hidden">
+          <div id="user-info">
+            <div id="photo-container">
+              <img id="photo">
+            </div>
+            <div id="name"></div>
+            <div id="email"></div>
+            <div id="phone"></div>
+            <div id="is-new-user"></div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <button id="sign-out">Sign Out</button>
+        <div id="user-signed-out" class="hidden">
+          <h4>You are signed out.</h4>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('sign-out').addEventListener('click', function () {
+      console.log("test");
+      firebase.auth().signOut();
+    });
+
+  </script>
+</body>
+
 </html>
