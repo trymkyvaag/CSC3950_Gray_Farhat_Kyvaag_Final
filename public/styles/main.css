@@ -9,6 +9,7 @@
     --primary-button-color: rgb(0, 0, 0);
     --primary-button-hover: rgb(30, 30, 30);
     --secondary-button-color: #ff5050;
+    --danger-button-color: rgb(166, 0, 0);
     --main-border-radius: 1rem;
     --main-transition: all ease-in-out 0.2s;
     --mask-fade: linear-gradient(180deg, transparent 5%, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 90%, transparent 95%)
