@@ -15,34 +15,30 @@ const database = db.getDatabase();
 
 const rootRef = db.ref(database);
 
-// const newData = {
-//     email: "john@example.com",
-//     uid: 123
-// };
-
-// const newEntryRef = db.push(rootRef, newData);
-// const newEntryKey = newEntryRef.key;
-// console.log(`New entry added with key: ${newEntryKey}`);
-
-
-async function checkAndAddUser(user) {
+async function checkAndAddUser() {
     try {
         // Check if user with the same UID exists
-        console.log(user.uid)
+        // var userId = document.getElementById("books-uid-field").value;
+        var userId = "1234" //TODO: get from line above
+        var userEmail = "test@mail.no"; //Same thing
+        console.log(userId);
         // const userQuery = db.query(rootRef, db.equalTo('uid', user.uid));
-
+        const tmpUser = {
+            email: userEmail,
+            uid: userId,
+        }
         // const userSnapshot = await db.get(userQuery);
         const snapshot = await db.get(rootRef);
         const users = snapshot.val();
 
         // Check if user with the same UID already exists
-        const userExists = Object.values(users).some(existingUser => existingUser.uid === user.uid);
+        const userExists = Object.values(users).some(existingUser => existingUser.uid === tmpUser.uid);
 
 
         if (userExists) {
             console.log('User already exists in the database');
         } else {
-            await db.push(rootRef, user);
+            await db.push(rootRef, tmpUser);
             console.log('New user added to the database');
         }
     } catch (error) {
@@ -77,13 +73,7 @@ async function getAllEmails() {
     }
 }
 
+
 // getAllEmails();
-
-
-// const newUser = {
-//     email: "tom@example.com",
-//     uid: "1223"
-// };
-
-// checkAndAddUser(newUser);
-
+checkAndAddUser();
+// export { checkAndAddUser, getAllEmails }

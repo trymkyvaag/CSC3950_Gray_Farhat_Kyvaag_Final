@@ -9,10 +9,10 @@
 
     <!--    Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"></script>
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 
     <!--    Stylesheets-->
     <link rel="stylesheet" href="styles/main.css">
@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="styles/account.css">
     <!--    Scripts-->
     <script src="js/collections.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+    <!-- <script data-main="scripts/main" src="../javascript/require.js"></script> -->
 
     <!--    Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,104 +31,125 @@
 </head>
 
 <body>
-<header class="navbar sticky-top navbar-expand-lg body-navbar">
-    <nav class="container-xxl body-gutter flex-wrap flex-lg-nowrap">
-        <div class="d-lg-none body-navbar-toggle">
-            <!--                Previously used to be toggle button wrapper. Left outer div for spacing purposes-->
-        </div>
-        <a class="navbar-brand p-0 me-0 me-lg-2 d-flex" href="">FoldedCorner</a>
-        <div class="body-navbar-toggle">
-            <button class="navbar-toggler p-2" id="menu-toggle-button" type="button" data-bs-toggle="offcanvas"
+    <header class="navbar sticky-top navbar-expand-lg body-navbar">
+        <nav class="container-xxl body-gutter flex-wrap flex-lg-nowrap">
+            <div class="d-lg-none body-navbar-toggle">
+                <!--                Previously used to be toggle button wrapper. Left outer div for spacing purposes-->
+            </div>
+            <a class="navbar-brand p-0 me-0 me-lg-2 d-flex" href="">FoldedCorner</a>
+            <div class="body-navbar-toggle">
+                <button class="navbar-toggler p-2" id="menu-toggle-button" type="button" data-bs-toggle="offcanvas"
                     href="#offcanvas-nav">
-                ...
-            </button>
-        </div>
-
-        <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="offcanvas-nav"
-             aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header border-bottom">
-                <a href="" class="navbar-brand offcanvas-title">
-                    Menu
-                </a>
-                <button class="btn-close" type="button" data-bs-dismiss="offcanvas" href="#offcanvas-nav"></button>
+                    ...
+                </button>
             </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="/bookshelves">Bookshelves</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="btn btn-secondary dropdown-toggle account-dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="nav-profile-picture" src="https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg" alt="Profile Picture">
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/account">Account Settings</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Sign Out</a></li>
-                        </ul>
-                    </li>
-                </ul>
+
+            <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="offcanvas-nav"
+                aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header border-bottom">
+                    <a href="" class="navbar-brand offcanvas-title">
+                        Menu
+                    </a>
+                    <button class="btn-close" type="button" data-bs-dismiss="offcanvas" href="#offcanvas-nav"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="/bookshelves">Bookshelves</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="btn btn-secondary dropdown-toggle account-dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <img class="nav-profile-picture"
+                                    src="https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
+                                    alt="Profile Picture">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/account">Account Settings</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Sign Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
 
-<div class="container-xxl">
-    <div class="row">
+    <div class="container-xxl">
+        <div class="row">
 
-        <main class="body-main order-1 col" id="bodyMain">
-            <div class="container" id="main-body-container">
-                <!--                    Main Page Content-->
-                <div id="main-page-content">
+            <main class="body-main order-1 col" id="bodyMain">
+                <div class="container" id="main-body-container">
+                    <!--                    Main Page Content-->
+                    <div id="main-page-content">
 
-                    <div id="collections-preview-wrapper">
-                        <h3 class="home-heading">Your Account</h3>
-                        <div class="row">
-                            <div class="col d-flex justify-content-center">
-                                <div class="card" id="account-settings-wrapper">
-                                    <h4 class="account-subheading">Google Books User ID</h4>
-                                    <div id="booksuid-disclaimer">
-                                        <p>Your Google Books specific User ID is required to be able to manage your bookshelves and provide recommendations
-                                        based on your browsing.</p>
+                        <div id="collections-preview-wrapper">
+                            <h3 class="home-heading">Your Account</h3>
+                            <div class="row">
+                                <div class="col d-flex justify-content-center">
+                                    <div class="card" id="account-settings-wrapper">
+                                        <h4 class="account-subheading">Google Books User ID</h4>
+                                        <div id="booksuid-disclaimer">
+                                            <p>Your Google Books specific User ID is required to be able to manage your
+                                                bookshelves and provide recommendations
+                                                based on your browsing.</p>
 
-                                        <p>To find your Google Books User ID, <a id="books-uid-helper-link" href="https://books.google.com/books?" target="_blank">follow this link.</a></p>
+                                            <p>To find your Google Books User ID, <a id="books-uid-helper-link"
+                                                    href="https://books.google.com/books?" target="_blank">follow this
+                                                    link.</a></p>
+                                        </div>
+                                        <input type="text" class="primary-text-field" id="books-uid-field"
+                                            placeholder="Paste your Google Books User ID here">
+                                        <button class="button-primary" id="save-uid-button" onclick=''>Save User
+                                            ID</button>
+                                        <p id="example-uid"><strong>Example:
+                                            </strong>uid=<mark>113459348538234828345</mark></p>
+
+                                        <h4 class="account-subheading">Manage Account</h4>
+                                        <button class="button-primary" id="delete-account-button" onclick="">Delete My
+                                            Account</button>
                                     </div>
-                                    <input type="text" class="primary-text-field" id="books-uid-field"
-                                           placeholder="Paste your Google Books User ID here">
-                                    <button class="button-primary" id="save-uid-button" onclick="">Save User ID</button>
-                                    <p id="example-uid"><strong>Example: </strong>uid=<mark>113459348538234828345</mark></p>
-
-                                    <h4 class="account-subheading">Manage Account</h4>
-                                    <button class="button-primary" id="delete-account-button" onclick="">Delete My Account</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
-</div>
+    <!-- <script type="module">
+        import { checkAndAddUser, getAllEmails } from '../javascript/addCheckUser.js';
+
+        // Example: Call the functions when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAndAddUser();
+            getAllEmails();
+        });
+    </script> -->
 
 
-<!--Footer Section-->
-<footer class="footer-text">
-    <div class="container">
-        <p class="float-end mb-1">
-            <a id="back-to-top" href="#"> Back to top </a>
-        </p>
+    <!--Footer Section-->
+    <footer class="footer-text">
+        <div class="container">
+            <p class="float-end mb-1">
+                <a id="back-to-top" href="#"> Back to top </a>
+            </p>
 
-        <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
-            <li class="nav-item"><a class="nav-link active" href="/bookshelves">Bookshelves</a></li>
-            <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
-        </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/bookshelves">Bookshelves</a></li>
+                <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
+            </ul>
 
-        <p class="d-flex justify-content-center mb-1">
-            This is a working demo.
-        </p>
-    </div>
-</footer>
+            <p class="d-flex justify-content-center mb-1">
+                This is a working demo.
+            </p>
+        </div>
+    </footer>
 </body>
+
 
 </html>
