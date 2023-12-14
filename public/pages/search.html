@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadRover | Browse</title>
+
+    <!--    Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <!--    Stylesheets-->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/browse.css">
+    <!--    Scripts-->
+    <script src="js/searchEvents.js" defer></script>
+
+    <!--    Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="navbar sticky-top navbar-expand-lg body-navbar">
+        <nav class="container-xxl body-gutter flex-wrap flex-lg-nowrap">
+            <div class="d-lg-none body-navbar-toggle">
+                <button class="navbar-toggler p-2" id="aside-toggle-button" type="button" data-bs-toggle="offcanvas"
+                    href="#offcanvas">
+                    +
+                </button>
+            </div>
+            <a class="navbar-brand p-0 me-0 me-lg-2 d-flex" href="">FoldedCorner</a>
+            <div class="body-navbar-toggle">
+                <button class="navbar-toggler p-2" id="menu-toggle-button" type="button" data-bs-toggle="offcanvas"
+                    href="#offcanvas-nav">
+                    ...
+                </button>
+            </div>
+
+            <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="offcanvas-nav"
+                aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header border-bottom">
+                    <a href="" class="navbar-brand offcanvas-title">
+                        Menu
+                    </a>
+                    <button class="btn-close" type="button" data-bs-dismiss="offcanvas" href="#offcanvas-nav"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/bookshelves">Bookshelves</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="/search">Search</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-xxl">
+        <div class="row">
+            <!--            <div id="quick-search-wrapper">-->
+            <!--                <button type="button" class="round-button button-primary" id="quick-search-button"-->
+            <!--                    data-bs-toggle="modal" data-bs-target="#searchModal">-->
+            <!--                    <img src="styles/icons/searchWhiteSmall.png" alt="Search Icon">-->
+            <!--                </button>-->
+            <!--            </div>-->
+
+            <!-- This is our offcanvas that gets displayed to the screen-->
+            <aside id="bodySidebar" class="body-sidebar col-3">
+                <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="offcanvas"
+                    aria-labelledby="offcanvasExampleLabel">
+                    <div class="offcanvas-header border-bottom">
+                        <a href="" class="navbar-brand offcanvas-title">
+                            Filter
+                        </a>
+                        <button class="btn-close" type="button" data-bs-dismiss="offcanvas" href="#offcanvas"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="aside-wrapper">
+                            <div class="card">
+                                <!--                            Narrow By Accordion-->
+                                <div class="accordion" id="narrowBy-Accordion">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapse-narrowBy" aria-expanded="false"
+                                                aria-controls="collapseOne">
+                                                <h4>Narrow By</h4>
+                                            </button>
+                                        </h2>
+                                        <div id="collapse-narrowBy" class="accordion-collapse collapse"
+                                            data-bs-parent="#narrowBy-Accordion">
+                                            <div class="accordion-body">
+                                                <div id="narrowBy-wrapper">
+                                                    <!--                                                Narrowing Options-->
+                                                    <!--                                                    Narrowing by Author-->
+                                                    <label for="narrow-author-list">Author</label>
+                                                    <ul id="narrow-author-list">
+                                                        <!-- <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">Jeff Kinney</label>
+                                                        </li>
+                                                        <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">Jeff Kinney</label>
+                                                        </li>
+                                                        <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">Jeff Kinney</label>
+                                                        </li>
+                                                        <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">Jeff Kinney</label>
+                                                        </li>
+                                                        <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">Jeff Kinney</label>
+                                                        </li>
+                                                        <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">Jeff Kinney</label>
+                                                        </li>
+                                                        <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">Jeff Kinney</label>
+                                                        </li>
+                                                        <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">Jeff Kinney</label>
+                                                        </li>
+                                                        <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">Jeff Kinney</label>
+                                                        </li> -->
+                                                    </ul>
+                                                    <!--                                                    Narrowing by Year-->
+                                                    <label for="narrow-year-list">Year</label>
+                                                    <ul id="narrow-year-list">
+                                                        <!-- <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">1987</label>
+                                                        </li>
+                                                        <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">1987</label>
+                                                        </li>
+                                                        <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">1987</label>
+                                                        </li>
+                                                        <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">1987</label>
+                                                        </li>
+                                                        <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">1987</label>
+                                                        </li>
+                                                        <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">1987</label>
+                                                        </li>
+                                                        <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">1987</label>
+                                                        </li>
+                                                        <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">1987</label>
+                                                        </li>
+                                                        <li>
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="flexCheckChecked">
+                                                            <label for="flexCheckChecked">1987</label>
+                                                        </li> -->
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!--        Main Content-->
+            <main class="body-main order-1 col-9" id="bodyMain">
+                <div class="container" id="main-body-container">
+                    <!--                Main Search Bar-->
+                    <div id="main-search-wrapper">
+                        <div class="row">
+                            <div class="col col-lg-10">
+                                <input type="text" class="primary-text-field" id="main-search-field"
+                                    placeholder="Find a book by title, author, or year">
+                            </div>
+                            <div class="col col-sm-2">
+                                <button type="button" class="button-primary" id="main-search-button">Search</button>
+                            </div>
+                        </div>
+                        <div id="breadcrumbs-wrapper">
+                            <nav style="--bs-breadcrumb-divider: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAxUlEQVR4nO3WvWpCQRAG0FUIUUIKhSApQjrL2wWtLAwxVYgk5O/9H+SEhVvIaKlz5eIH22xz2GV2Z0q55JyCNf7atcFVFvy6A9e1wiADvsFHwJuTwzW4w0/AH0tGMA/wN6ZZ+FPAtxhnwEM8B/yl7mfg13gL+PLkcA0m+Ar4vGQEDwH+xX0W3gT8E7cZ8KD9yXbxTa/hJv2qHS6uWf+eE0Z4D+iin1+m/SZRTz7qX1vErK3avEFAV6OPDoe9dSfj7SXlCPkH7C3Ty4KuulUAAAAASUVORK5CYII=)"
+                                aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item" id="breadcrumb-year"><a href="#">1986</a></li>
+                                    <li class="breadcrumb-item" id="breadcrumb-author"><a href="#">Jeff Kinney</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <div id="main-search-results-wrapper">
+                            <div class="row">
+                                <div id="main-search-results-list" class="col">
+                                    <!-- <div class="card modal-card corner-fold">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img class="modal-card-cover"
+                                                    src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                    alt="">
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="modal-info-wrapper">
+                                                    <h4 class="modal-card-title">The Witchfinder (Amos Walker Mystery
+                                                        Series)</h4>
+                                                    <h5 class="modal-card-author">Author</h5>
+                                                    <p class="modal-card-year">Year</p>
+                                                </div>
+                                            </div>
+                                            <button class="round-button list-card-add-remove-button add-to-remove">
+                                                <img src="../public/styles/icons/addRemoveSmall.png" alt="">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card modal-card">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img class="modal-card-cover"
+                                                    src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                    alt="">
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="modal-info-wrapper">
+                                                    <h4 class="modal-card-title">The Witchfinder (Amos Walker Mystery
+                                                        Series)</h4>
+                                                    <h5 class="modal-card-author">Author</h5>
+                                                    <p class="modal-card-year">Year</p>
+                                                </div>
+                                            </div>
+                                            <button class="round-button list-card-add-remove-button">
+                                                <img src="../public/styles/icons/addRemoveSmall.png" alt="">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card modal-card">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img class="modal-card-cover"
+                                                    src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                    alt="">
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="modal-info-wrapper">
+                                                    <h4 class="modal-card-title">The Witchfinder (Amos Walker Mystery
+                                                        Series)</h4>
+                                                    <h5 class="modal-card-author">Author</h5>
+                                                    <p class="modal-card-year">Year</p>
+                                                </div>
+                                            </div>
+                                            <button class="round-button list-card-add-remove-button">
+                                                <img src="../public/styles/icons/addRemoveSmall.png" alt="">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card modal-card corner-fold">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img class="modal-card-cover"
+                                                    src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                    alt="">
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="modal-info-wrapper">
+                                                    <h4 class="modal-card-title">The Witchfinder (Amos Walker Mystery
+                                                        Series)</h4>
+                                                    <h5 class="modal-card-author">Author</h5>
+                                                    <p class="modal-card-year">Year</p>
+                                                </div>
+                                            </div>
+                                            <button class="round-button list-card-add-remove-button add-to-remove">
+                                                <img src="../public/styles/icons/addRemoveSmall.png" alt="">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card modal-card corner-fold">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img class="modal-card-cover"
+                                                    src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                    alt="">
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="modal-info-wrapper">
+                                                    <h4 class="modal-card-title">The Witchfinder (Amos Walker Mystery
+                                                        Series)</h4>
+                                                    <h5 class="modal-card-author">Author</h5>
+                                                    <p class="modal-card-year">Year</p>
+                                                </div>
+                                            </div>
+                                            <button class="round-button list-card-add-remove-button add-to-remove">
+                                                <img src="../public/styles/icons/addRemoveSmall.png" alt="">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card modal-card">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img class="modal-card-cover"
+                                                    src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                    alt="">
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="modal-info-wrapper">
+                                                    <h4 class="modal-card-title">The Witchfinder (Amos Walker Mystery
+                                                        Series)</h4>
+                                                    <h5 class="modal-card-author">Author</h5>
+                                                    <p class="modal-card-year">Year</p>
+                                                </div>
+                                            </div>
+                                            <button class="round-button list-card-add-remove-button">
+                                                <img src="../public/styles/icons/addRemoveSmall.png" alt="">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card modal-card">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img class="modal-card-cover"
+                                                    src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                    alt="">
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="modal-info-wrapper">
+                                                    <h4 class="modal-card-title">The Witchfinder (Amos Walker Mystery
+                                                        Series)</h4>
+                                                    <h5 class="modal-card-author">Author</h5>
+                                                    <p class="modal-card-year">Year</p>
+                                                </div>
+                                            </div>
+                                            <button class="round-button list-card-add-remove-button">
+                                                <img src="../public/styles/icons/addRemoveSmall.png" alt="">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card modal-card">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img class="modal-card-cover"
+                                                    src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                    alt="">
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="modal-info-wrapper">
+                                                    <h4 class="modal-card-title">The Witchfinder (Amos Walker Mystery
+                                                        Series)</h4>
+                                                    <h5 class="modal-card-author">Author</h5>
+                                                    <p class="modal-card-year">Year</p>
+                                                </div>
+                                            </div>
+                                            <button class="round-button list-card-add-remove-button">
+                                                <img src="../public/styles/icons/addRemoveSmall.png" alt="">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card modal-card">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img class="modal-card-cover"
+                                                    src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                    alt="">
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="modal-info-wrapper">
+                                                    <h4 class="modal-card-title">The Witchfinder (Amos Walker Mystery
+                                                        Series)</h4>
+                                                    <h5 class="modal-card-author">Author</h5>
+                                                    <p class="modal-card-year">Year</p>
+                                                </div>
+                                            </div>
+                                            <button class="round-button list-card-add-remove-button">
+                                                <img src="../public/styles/icons/addRemoveSmall.png" alt="">
+                                            </button>
+                                        </div>
+                                    </div> -->
+                                </div>
+
+                                <div id="see-more-button-wrapper">
+                                    <button type="button" class="button-primary" style="display: none"
+                                        id="load-more-button">See more</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="SearchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="searchTitleModalLabel">Find a Book</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <div id="modal-search-wrapper">
+                                <input type="text" class="primary-text-field" id="modal-search-field"
+                                    placeholder="Find a book by title, author, or year">
+                                <div id="modal-search-results-wrapper">
+                                    <div class="row">
+                                        <div id="modal-search-results-list" class="col">
+                                            <!--                                            Placeholder Cards-->
+                                            <!-- <div class="card modal-card corner-fold">
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <img class="modal-card-cover"
+                                                            src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <div class="modal-info-wrapper">
+                                                            <h4 class="modal-card-title">The Witchfinder (Amos Walker
+                                                                Mystery Series)</h4>
+                                                            <h5 class="modal-card-author">Author</h5>
+                                                            <p class="modal-card-year">Year</p>
+                                                        </div>
+                                                    </div>
+                                                    <button class="round-button list-card-add-remove-button">
+                                                        <img src="styles/icons/addRemoveSmall.png" alt="">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="card modal-card">
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <img class="modal-card-cover"
+                                                            src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <h4 class="modal-card-title">The Witchfinder (Amos Walker
+                                                            Mystery Series)</h4>
+                                                        <h5 class="modal-card-author">Author</h5>
+                                                        <p class="modal-card-year">Year</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card modal-card">
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <img class="modal-card-cover"
+                                                            src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <h4 class="modal-card-title">The Witchfinder (Amos Walker
+                                                            Mystery Series)</h4>
+                                                        <h5 class="modal-card-author">Author</h5>
+                                                        <p class="modal-card-year">Year</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card modal-card">
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <img class="modal-card-cover"
+                                                            src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <h4 class="modal-card-title">The Witchfinder (Amos Walker
+                                                            Mystery Series)</h4>
+                                                        <h5 class="modal-card-author">Author</h5>
+                                                        <p class="modal-card-year">Year</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card modal-card">
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <img class="modal-card-cover"
+                                                            src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <h4 class="modal-card-title">The Witchfinder (Amos Walker
+                                                            Mystery Series)</h4>
+                                                        <h5 class="modal-card-author">Author</h5>
+                                                        <p class="modal-card-year">Year</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card modal-card">
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <img class="modal-card-cover"
+                                                            src="https://m.media-amazon.com/images/I/91DhazpQXML._AC_UF1000,1000_QL80_.jpg"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="col-10">
+                                                        <h4 class="modal-card-title">The Witchfinder (Amos Walker
+                                                            Mystery Series)</h4>
+                                                        <h5 class="modal-card-author">Author</h5>
+                                                        <p class="modal-card-year">Year</p>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="button-primary" id="modal-browse-button">Browse More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer-text">
+        <div class="container">
+            <p class="float-end mb-1">
+                <a id="back-to-top" href="#"> Back to top </a>
+            </p>
+
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/collections">Collection</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/search">Search</a></li>
+            </ul>
+
+            <p class="d-flex justify-content-center mb-1">
+                This is a working demo.
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>
