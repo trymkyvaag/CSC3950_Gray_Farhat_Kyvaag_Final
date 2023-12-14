@@ -44,16 +44,16 @@ searchButton.addEventListener('click', async () => {
 
     const searchInput = document.getElementById('main-search-field');
     const title = searchInput.value;
-    console.log("Keyword search: " + title);
+    // console.log("Keyword search: " + title);
     // Call the searchForBook function with the provided parameters
     const returnResult = await searchTitle(title);
-    console.log("Search Resultts gotten successfully");
+    // console.log("Search Resultts gotten successfully");
     // console.log(searchResults);
     document.getElementById('main-search-field').value = '';
-    console.log("SearchResults:");
+    // console.log("SearchResults:");
     if (returnResult && returnResult.items) {
         for (const book of returnResult.items) {
-            console.log(book);
+            // console.log(book);
 
             try{
                 createMainBookCard(
@@ -84,13 +84,13 @@ async function loadMore() {
     index += document.getElementById("main-search-results-list").childElementCount;
 
     const returnResult = await searchTitle(title = lastSerachWord, index = index);
-    console.log("Search Resultts gotten successfully");
+    // console.log("Search Resultts gotten successfully");
     // console.log(searchResults);
-    document.getElementById('main-search-field').value = '';
-    console.log("SearchResults:");
+    // document.getElementById('main-search-field').value = '';
+    // console.log("SearchResults:");
     if (returnResult && returnResult.items) {
         for (const book of returnResult.items) {
-            console.log(book);
+            // console.log(book);
 
             createMainBookCard(
                 book.volumeInfo.imageLinks.thumbnail || 'default-thumbnail-url',
@@ -413,11 +413,31 @@ async function createMainBookCard(
 function handleClick(event) {
     // Access the clicked div
     const clickedDiv = event.target;
-    const bookCover = clickedDiv.getElementsByClassName("modal-card-cover")
-    // Perform actions when the div is clicked
-    console.log("Div clicked:", clickedDiv.textContent);
+
+    var parentModal = event.target.parentNode;
+    if(parentModal.className == "modal-info-wrapper"){
+        console.log(parentModal);
+
+        var title = parentModal.children[0];
+        var author = parentModal.children[1];
+        var year = parentModal.children[2];
+
+        var book_info = {
+            bookTitle: parentModal.children[0].innerHTML,
+            bookAuthor: parentModal.children[1].innerHTML,
+            bookYear: parentModal.children[2].innerHTML
+        }
+
+        var json =JSON.stringify(book_info);
+        sessionStorage.setItem('book_info',json);
+
+
+
+        // console.log(title);
+
+    }
 
     // bookCover.item(0).style.viewTransitionName = 'book-cover';
     window.location.href = '/details';
-    console.log("page redirected")
+    // console.log("page redirected")
 }

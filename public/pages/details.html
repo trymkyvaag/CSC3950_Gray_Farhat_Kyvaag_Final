@@ -70,6 +70,7 @@
     </nav>
 </header>
 
+
 <div class="container-xxl">
     <div class="row">
         <div id="quick-search-wrapper">
@@ -279,6 +280,21 @@
         </p>
     </div>
 </footer>
+
+<script>
+    var book_info = sessionStorage.getItem("book_info");
+    book_info = JSON.parse(book_info);
+    
+    // console.log(book_info);
+    
+    // document.getElementById('main-book-title').innerHTML = book_info.bookTitle;
+    
+    document.getElementById('main-book-title').innerText = book_info.bookTitle;
+    document.getElementById('author-wrapper').children[1].innerText = book_info.bookTitle;
+    
+    </script>
+
+
 </body>
 
 </html>
