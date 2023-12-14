@@ -25,24 +25,29 @@ const rootRef = db.ref(database);
 // console.log(`New entry added with key: ${newEntryKey}`);
 
 
-async function checkAndAddUser(user) {
+async function checkAndAddUser() {
     try {
         // Check if user with the same UID exists
+        var userId = document.getElementById("books-uid-field").value;
+        var userEmail = "test@mail.no";
         console.log(user.uid)
         // const userQuery = db.query(rootRef, db.equalTo('uid', user.uid));
-
+        const tmpUser = {
+            email: email,
+            uid: userId,
+        }
         // const userSnapshot = await db.get(userQuery);
         const snapshot = await db.get(rootRef);
         const users = snapshot.val();
 
         // Check if user with the same UID already exists
-        const userExists = Object.values(users).some(existingUser => existingUser.uid === user.uid);
+        const userExists = Object.values(users).some(existingUser => existingUser.uid === tmpUser.uid);
 
 
         if (userExists) {
             console.log('User already exists in the database');
         } else {
-            await db.push(rootRef, user);
+            await db.push(rootRef, tmpUser);
             console.log('New user added to the database');
         }
     } catch (error) {
