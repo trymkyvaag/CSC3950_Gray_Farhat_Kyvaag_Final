@@ -1,0 +1,42 @@
+#account-settings-wrapper{
+    width: 50%;
+}
+
+.account-subheading{
+    margin-bottom: 1rem;
+}
+
+#booksuid-disclaimer{
+    margin: 1rem;
+}
+
+#example-uid{
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 10rem;
+}
+
+#save-uid-button{
+    margin-block: 1rem;
+}
+
+#books-uid-helper-link{
+    text-decoration: none;
+    color: var(--main-background-color);
+}
+
+mark{
+    background-color: rgba(255, 206, 46, 0.64);
+    padding: 0.5rem;
+    margin-inline: 0.2rem;
+    border-radius: 0.5rem;
+}
+
+#delete-account-button{
+    background: var(--danger-button-color);
+    background-image: var(--grain);
+}
+
+#delete-account-button:hover{
+    box-shadow: var(--danger-button-color) 0 0 15px 2px;
+}
