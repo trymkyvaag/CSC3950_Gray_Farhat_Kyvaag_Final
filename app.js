@@ -8,6 +8,7 @@ const addCheckUser = require('./public/javascript/addCheckUser.js');
 const port = 3000;
 const app = express();
 app.use(morgan('tiny'))
+app.use(express.json());
 
 app.use(express.static('public'))
 app.use(express.static('public/pages'))
@@ -41,6 +42,9 @@ app.get('/account', (req, res) => {
 
 app.post('/checkAndAddUser', async (req, res) => {
   const userId = req.body.userId;
+  console.log("in post");
+  console.log(req.body);
+
 
   try {
     if (userId) {

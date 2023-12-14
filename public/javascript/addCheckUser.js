@@ -10,10 +10,8 @@ admin.initializeApp({
 const db = admin.database();
 const rootRef = db.ref('/');
 
-async function checkAndAddUser() {
+async function checkAndAddUser(userId) {
     try {
-        // Check if user with the same UID exists
-        var userId = "1234123";
         var userEmail = "test@mai2l.no";
         console.log(userId);
 
@@ -67,7 +65,7 @@ async function getAllEmails() {
     }
 }
 
-checkAndAddUser();
+// checkAndAddUser();
 module.exports = {
     checkAndAddUser,
     getAllEmails
