@@ -12,7 +12,7 @@ const rootRef = db.ref('/');
 
 async function checkAndAddUser(userId) {
     try {
-        var userEmail = "test@mai2l.no";
+        var userEmail = "test@mai2l.no"; //Change to session email once fixed
         console.log(userId);
 
         const tmpUser = {
